@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+	version="2.2">
+
+	<persistence-unit name="PRODTECH"
+		transaction-type="RESOURCE_LOCAL">
+		<description>Persistence for PRODTECH</description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>com.itl.domain.entities.masters.AddressType</class>
+		<class>com.itl.domain.entities.masters.AuthStatusMst</class>
+		<class>com.itl.domain.entities.masters.BranchMst</class>
+		<class>com.itl.domain.entities.masters.BranchDetails</class>
+		<class>com.itl.domain.entities.masters.CasteMst</class>
+		<class>com.itl.domain.entities.masters.CityMst</class>
+		<class>com.itl.domain.entities.masters.CountryMst</class>
+		<class>com.itl.domain.entities.masters.DocumentTypeMst</class>
+		
+		<class>com.itl.domain.entities.masters.GenderMst</class>
+		<class>com.itl.domain.entities.masters.IndustryMst</class>
+		<class>com.itl.domain.entities.masters.MaritalStatusMst</class>
+		<class>com.itl.domain.entities.masters.OccupationMst</class>
+		
+		<class>com.itl.domain.entities.masters.OrgTypeMst</class>
+		<class>com.itl.domain.entities.masters.PrefCategoryMst</class>
+		<class>com.itl.domain.entities.masters.QualificationMst</class>
+		<class>com.itl.domain.entities.masters.ReligionMst</class>
+		<class>com.itl.domain.entities.masters.ResidentialStatusMst</class>
+		<class>com.itl.domain.entities.masters.SalutationMst</class>
+		<class>com.itl.domain.entities.masters.SectorMst</class>
+		<class>com.itl.domain.entities.masters.StateMst</class>
+		
+		<class>com.itl.domain.entities.custservice.CustomerCategoryTypeMst</class>
+		<class>com.itl.domain.entities.custservice.CustomerMst</class>
+		<class>com.itl.domain.entities.custservice.CustomerDetails</class>
+		<class>com.itl.domain.entities.custservice.CustomerIntroducerMst</class>
+		<class>com.itl.domain.entities.custservice.CustomerKYCDetails</class>
+		<class>com.itl.domain.entities.custservice.EmployerMst</class>
+		<class>com.itl.domain.entities.custservice.EmployerDetail</class>
+		
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+			<property name="hibernate.search.autoregister_listeners" value="true" />
+			<property name="hibernate.cache.use_second_level_cache" value="false" />
+			<property name="hibernate.search.indexing_strategy" value="manual" />
+			<property name="hibernate.search.default.directory_provider" value="org.hibernate.search.store.FSDirectoryProvider" />
+			<!-- <property name="hibernate.search.default.indexBase"
+				value="C:\\omniNG_Indexes" /> -->
+			<!-- <property name="hibernate.temp.use_jdbc_metadata_defaults"
+				value="false" /> -->
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: MASTER-SERVICE
+  cache:
+    type: redis
+    redis:
+      cache-null-values: false
+      time-to-live: 3600000
+  redis:
+    host: 172.21.0.61
+    port: 6379
+    password: cnpoc2021
+  zipkin:
+    enabled: true
+    base-url: http://172.21.0.61:9411
+    
+server:
+  port: 8183
+
+logging:
+  level:
+    root: WARN
+    com:
+      itl: DEBUG
+    org:
+      springframework:
+        web: INFO
+      hibernate: ERROR
+
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.value}
+    preferIpAddress: true
+    hostname: 172.21.0.61
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 20
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://172.21.0.61:8761/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false  #disable the spring security on the management endpoints like /env, /refresh etc. 

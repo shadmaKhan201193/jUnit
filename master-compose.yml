@@ -1,0 +1,27 @@
+version: "3.7"  
+
+services:
+  MasterService:
+    image: adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    ports:
+      - 8100-8199:8183
+    volumes: 
+      - ./build/libs/masterservice-0.0.1.jar:/usr/src/masterservice/masterservice-0.0.1.jar
+      - ./logs/masterservice/:/logs/
+    command: java -jar /usr/src/masterservice/masterservice-0.0.1.jar
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 0.0.0.0:2020 
+networks:
+  default:
+    external: true
+    name: cnpoc-net

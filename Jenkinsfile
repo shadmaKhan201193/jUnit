@@ -5,7 +5,7 @@ pipeline {
         stage('build') {
             steps {
                 dir('.') {
-                    sh 'clean build
+                    sh 'clean build'
                 }
             }
         }

@@ -5,10 +5,7 @@ pipeline {
         stage('build') {
             steps {
                 {
-                    withgradle{
                         sh 'gradle clean build'
-                    }
-                    
                 }
             }
         }

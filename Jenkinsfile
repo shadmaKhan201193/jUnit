@@ -11,7 +11,7 @@ pipeline {
         }
         stage("publish") {
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: '0.0.1', classifier: '', file: 'build/libs/', type: 'jar']], credentialsId: 'nexus', groupId: 'com.itl', nexusUrl: '127.21.0.66:8081', nexusVersion: 'nexus2', protocol: 'http', repository: 'maven-central-repo', version: ''
+                nexusArtifactUploader artifacts: [[artifactId: '${artifactId}', classifier: '', file: 'build/libs/', type: 'jar']], credentialsId: 'nexus', groupId: '${groupId}', nexusUrl: '127.21.0.66:8081', nexusVersion: 'nexus2', protocol: 'http', repository: 'maven-central-repo', version: ''
             }
         }
     }

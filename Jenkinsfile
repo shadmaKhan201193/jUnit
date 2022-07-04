@@ -1,3 +1,6 @@
+@Library('sharedlibrary') _
+welcomeJob ‘lambdatest’
+/*
 pipeline {
     agent any
     tools {
@@ -16,3 +19,4 @@ pipeline {
         }
     }
 }
+*/

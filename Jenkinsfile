@@ -1,6 +1,11 @@
 @Library('sharedlibrary') _
       pipeline {
         agent any
+        tools {
+            gradle "7.4.2"
+            jdk "JDK17"
+        }
+
         stages {
             stage("Build") {
                 steps {

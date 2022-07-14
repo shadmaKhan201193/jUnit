@@ -17,9 +17,10 @@
             }   
             stage("SonarQube analysis") {
                 steps {
-                    def sonarqubeScannerHome = tool "sonar-scanner";
+                   // def sonarqubeScannerHome = tool "sonar-scanner";
                     withSonarQubeEnv('sonarqube') {
-                        sh "${sonarqubeScannerHome}/bin/sonar-scanner"
+                        def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                        sh "${scannerHome}/bin/sonar-scanner "
                     }
                 }
             }

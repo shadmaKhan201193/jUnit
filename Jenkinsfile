@@ -16,12 +16,12 @@
                 }
             }   
             stage("SonarQube analysis") {
-               //steps {
+                steps {
                     def scannerhome = tool "sonar-scanner";
                     withSonarQubeEnv('sonarqube') {
                         sh "${scannerhome}/bin/sonar-scanner"
                     }
-                //}
+                }
             }
             stage("Quality Gate") {
                 steps {

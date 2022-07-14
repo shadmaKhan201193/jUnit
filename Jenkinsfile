@@ -16,7 +16,7 @@
             }   
             stage("build & SonarQube analysis") {
                 steps {
-                    withSonarQubeEnv('My SonarQube Server') {
+                    withSonarQubeEnv('sonarqube') {
                     sh 'mvn clean package sonar:sonar'
                 }
             }

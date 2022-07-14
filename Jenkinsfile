@@ -4,7 +4,6 @@
         tools {
             gradle "7.4.2"
             jdk "JDK17"
-            //SonarQube Scanner "sonarqube"
         }
 
         stages {
@@ -22,16 +21,17 @@
                         withSonarQubeEnv('sonarqube') {
                             //def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                             sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=masterservice -Dsonar.language=java -Dsonar.sources=src/main/java -Dsonar.java.binaries=build/classes -Dsonar.scm.disabled=true"
+                            waitForQualityGate abortPipeline: true
                         }
                     }
                 }
             }
-            stage("Quality Gate") {
+/*            stage("Quality Gate") {
                 steps {
-                    timeout(time: 10, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
+                    //timeout(time: 10, unit: 'MINUTES') {
+                    //waitForQualityGate abortPipeline: true
                 }
             }
-        }
+        }*/
     }
 }

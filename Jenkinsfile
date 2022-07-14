@@ -17,10 +17,12 @@
             }   
             stage("SonarQube analysis") {
                 steps {
-                   // def sonarqubeScannerHome = tool "sonar-scanner";
-                    withSonarQubeEnv('sonarqube') {
-                        def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                        sh "${scannerHome}/bin/sonar-scanner "
+                    script {
+                       def sonarqubeScannerHome = tool "sonar-scanner";
+                        withSonarQubeEnv('sonarqube') {
+                            //def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                            sh "${sonarqubeScannerHome}/bin/sonar-scanner "
+                        }
                     }
                 }
             }

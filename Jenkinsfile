@@ -12,13 +12,5 @@ pipeline {
                 }
             }
         }
-/*        stage("publish") {
-            steps {
-                script{
-                    publish()
-                }
-            }
-        }
     }
-*/
 }

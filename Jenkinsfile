@@ -21,7 +21,7 @@
                        def sonarqubeScannerHome = tool "sonar-scanner";
                         withSonarQubeEnv('sonarqube') {
                             //def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                            sh "${sonarqubeScannerHome}/bin/sonar-scanner "
+                            sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://172.21.0.66:9000 -Dsonar.projectName=masterservice -Dsonar.projectKey=masterservice -Dsonar.sources=/src/main/ -Dsonar.language=java -Dsonar.java.binaries=."
                         }
                     }
                 }

@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-        stage("publish") {
+/*        stage("publish") {
             steps {
                 script{
                     publish()
@@ -20,4 +20,5 @@ pipeline {
             }
         }
     }
+*/
 }

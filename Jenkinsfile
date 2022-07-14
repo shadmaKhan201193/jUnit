@@ -4,6 +4,7 @@
         tools {
             gradle "7.4.2"
             jdk "JDK17"
+            sonarqube "sonarqube"
         }
 
         stages {
@@ -14,10 +15,10 @@
                     }
                 }
             }   
-            stage("build & SonarQube analysis") {
+            stage("SonarQube analysis") {
                 steps {
                     withSonarQubeEnv('sonarqube') {
-                    sh 'gradle sonarqube'
+                    //sh 'sonarscanner'
                 }
             }
         }

@@ -17,13 +17,13 @@ pipeline {
                 }
             }
         }   
-        stage("Sonar Scan") {
-            steps {
-                script {
-                    //sonarScan()
-                }
-            }
-        }
+        //stage("Sonar Scan") {
+        //    steps {
+        //        script {
+        //            //sonarScan()
+        //        }
+        //    }
+        //}
         stage(docker){
             steps{
                 sh "docker build . -t 172.21.0.66:5000/master-service:1.0"

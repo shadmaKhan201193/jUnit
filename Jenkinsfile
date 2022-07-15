@@ -4,7 +4,7 @@ pipeline {
     tools {
         gradle "7.4.2"
         jdk "JDK17"
-        docker "docker"
+        dockerTool "docker"
     }
 
     stages {

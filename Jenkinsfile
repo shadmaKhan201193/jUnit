@@ -20,14 +20,14 @@ pipeline {
         stage("Sonar Scan") {
             steps {
                 script {
-                    sonarScan()
+                    //sonarScan()
                 }
             }
         }
         stage(docker){
             steps{
                 sh "docker build . -t 172.21.0.66:5000/master-service:1.0"
-                sh "docker login -u $dockerhub_USR -p $dockerhub_PSW"
+                sh "docker login 172.21.0.66:5000 -u $dockerhub_USR -p $dockerhub_PSW"
                 sh "docker push 172.21.0.66:5000/master-service:1.0"
             }
         }

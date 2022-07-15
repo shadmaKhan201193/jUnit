@@ -31,7 +31,7 @@ pipeline {
         }
         stage(docker){
             steps{
-                withCredentials(credentialsId: 'dockerhub')) {
+                withCredentials(credentialsId: 'dockerhub') {
                     sh "docker build . -t 172.21.0.66:5000/master-service:1.0"
                     sh "docker push 172.21.0.66:5000/master-service:1.0"
                 }

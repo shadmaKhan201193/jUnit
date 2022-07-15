@@ -28,8 +28,8 @@ pipeline {
                 }
             }
         }
-        stage{
-            step{
+        stage(docker build){
+            steps{
                 sh "docker build ."
             }
         }

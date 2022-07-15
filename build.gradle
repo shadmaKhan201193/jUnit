@@ -19,7 +19,7 @@ sourceCompatibility = '11'
 
 repositories {
 	maven {
-        url "http://172.21.0.66:8081/repository/maven-central-repo/"
+        url "http://172.21.0.66:8081/repository/maven-central/"
 		allowInsecureProtocol = true
     }
 }

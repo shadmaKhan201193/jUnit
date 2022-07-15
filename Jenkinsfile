@@ -6,7 +6,9 @@ pipeline {
         jdk "JDK17"
         dockerTool "docker"
     }
-
+    environment {
+        dockerhub=credentials("dockerhub")
+    }
     stages {
         stage("Build") {
             steps {
@@ -31,10 +33,9 @@ pipeline {
         }
         stage(docker){
             steps{
-                withCredentials('dockerhub') {
-                    sh "docker build . -t 172.21.0.66:5000/master-service:1.0"
-                    sh "docker push 172.21.0.66:5000/master-service:1.0"
-                }
+                sh "docker build . -t 172.21.0.66:5000/master-service:1.0"
+                sh "echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin"
+                sh "docker push 172.21.0.66:5000/master-service:1.0"
             }
         }
     }

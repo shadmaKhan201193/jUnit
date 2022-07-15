@@ -4,6 +4,7 @@ pipeline {
     tools {
         gradle "7.4.2"
         jdk "JDK17"
+        docker "docker"
     }
 
     stages {
@@ -30,7 +31,7 @@ pipeline {
         }
         stage(docker){
             steps{
-                sh "docker build ."
+                sh "docker ps"
             }
         }
     }

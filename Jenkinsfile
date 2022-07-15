@@ -32,6 +32,7 @@ pipeline {
         stage(docker){
             steps{
                 sh "docker build . -t master-service:1.0"
+                sh "docker push master-service:1.0"
             }
         }
     }

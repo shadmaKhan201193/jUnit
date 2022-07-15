@@ -14,14 +14,14 @@ pipeline {
                 }
             }
         }   
-        stage("Sonar Scan") {
+        stage("Scan") {
             steps {
                 script {
                     sonarScan()
                 }
             }
         }
-        stage(docker){
+        stage("Publish"){
             steps{
                 script {
                     dockerPublish()

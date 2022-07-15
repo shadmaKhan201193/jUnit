@@ -14,7 +14,7 @@ pipeline {
                 }
             }
         }   
-        stage("SonarQube analysis") {
+        stage("Sonar Scan") {
             steps {
                 script {
                     def sonarqubeScannerHome = tool "sonar-scanner";

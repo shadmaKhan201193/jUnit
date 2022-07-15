@@ -28,5 +28,12 @@ pipeline {
                 }
             }
         }
+        stage("Deploy") {
+            steps {
+                script {
+                    deploy()
+                }
+            }
+        }
     }
 }

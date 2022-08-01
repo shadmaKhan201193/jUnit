@@ -35,12 +35,12 @@ pipeline {
                 }
             }
         }
-#        stage("Deploy") {
-#            steps {
-#                script {
-#                    deploy()
-#                }
-#            }
-#        }
-    }
+<!--        stage("Deploy") {
+            steps {
+                script {
+                    deploy()
+                }
+            }
+        }
+    } -->
 }

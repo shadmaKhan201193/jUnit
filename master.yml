@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: master-service
-        image: master-service:0.0.1
+        image: 172.21.0.66:5000/master-service:0.0.1
         ports:
         - containerPort: 8183
         

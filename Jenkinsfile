@@ -28,12 +28,19 @@ pipeline {
                 }
             }
         }
-        stage("Deploy") {
+        stage('Deploying App to Kubernetes') {
             steps {
                 script {
-                    deploy()
+                    kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
                 }
             }
         }
+#        stage("Deploy") {
+#            steps {
+#                script {
+#                    deploy()
+#                }
+#            }
+#        }
     }
 }

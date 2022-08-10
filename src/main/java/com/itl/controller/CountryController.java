@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.itl.configuration.JwtTokenUtil;
 import com.itl.domain.entities.masters.CountryMst;
 import com.itl.service.masters.CountryService;
 import com.itl.utils.OmniConstants;
 import com.itl.web.dto.CountryVO;
 import com.itl.web.dto.CountryVOList;
-
 @RestController
 @RequestMapping("/country")
 @CrossOrigin(origins ="*",maxAge =3600)
@@ -29,6 +33,10 @@ public class CountryController {
 	@Autowired
 	private CountryService countryService;
 
+	
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+	
 	@PostMapping(value = "/createCountry", consumes = "application/json", produces = "application/json")
 	public String createCountry(@RequestBody CountryVO country) {
 		logger.debug("Add country for countryId : {}" + country.getCountryId());
@@ -99,9 +107,16 @@ public class CountryController {
 	@GetMapping(value = "/id/{id}", produces = "application/json")
 	public CountryVO getCountryById(@PathVariable String id) {
 		logger.info("Fetch country by countryId : {}", id);
+		
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//		  String token =request.getHeader("AUTHORIZATION"); 
+//		  var newToken = token.replace("API ", "");
+		
+		
 		CountryMst countryMst = countryService.getByCountryId(id);
 		CountryVO country = null;
-		if (null != countryMst) {
+		if (null != countryMst ) {
+				//jwtTokenUtil.validateToken(newToken)) {
 			country = new CountryVO();
 			country.setCountryId(countryMst.getCountryId());
 			country.setCountryName(countryMst.getCountryName());
@@ -111,6 +126,7 @@ public class CountryController {
 			country.setIsActive(Integer.toString(countryMst.getIsActive()));
 			country.setIsDeleted(String.valueOf(countryMst.getIsDeleted()));
 		}
+		
 		//TODO - add else part to reply that the country is not found
 		return country;
 	}
@@ -266,4 +282,15 @@ public class CountryController {
 			return "Failure.. Record does not exists";
 		}
 	}
+	
+
+@GetMapping(value = "/Test", produces = "application/json")
+public String demo()
+{
+	
+	return "demo from master serive";
 }
+	
+}
+
+

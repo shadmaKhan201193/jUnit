@@ -78,4 +78,9 @@ public class CacheBuilder {
 			}
 		}
 	}
+
+	public void initializeCache(String string, String appName) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.exception.ConstraintViolationException;
 //import org.hibernate.exception.ConstraintViolationException;
@@ -78,4 +79,12 @@ public class NGServiceImpl<K, E> implements NGService {
 			}
 		}
 	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
 }

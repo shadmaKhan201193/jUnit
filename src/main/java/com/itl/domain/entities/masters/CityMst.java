@@ -2,49 +2,52 @@ package com.itl.domain.entities.masters;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
-import org.hibernate.envers.Audited;
 
 import com.itl.domain.entities.base.Base;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 @Entity
-@Audited(auditParents = { Base.class })
-	@NamedQueries({
-	@NamedQuery(name="CityMst.getUniqueCity", query = "SELECT e FROM CityMst e WHERE e.id=:Id"),
-	@NamedQuery(name="CityMst.getByAuthStatus", query = "SELECT e FROM CityMst e WHERE e.authStatus=:authStatus AND e.isDeleted=:isDeleted"),
-	@NamedQuery(name="CityMst.getByDeleted", query = "SELECT e FROM CityMst e WHERE e.isDeleted=:isDeleted"),
-	@NamedQuery(name="CityMst.getCityIdByCityName", query = "SELECT e FROM CityMst e WHERE e.cityName=:cityName"),
-	@NamedQuery(name="CityMst.getcityName", query = "SELECT e FROM CityMst e WHERE e.cityName=:cityName"),
-	@NamedQuery(name="CityMst.getcityId", query = "SELECT e FROM CityMst e WHERE e.cityId=:cityId"),
-	@NamedQuery(name="CityMst.getcityByCountryState", query = "SELECT e FROM CityMst e "
-		+" WHERE e.countryId=:countryId AND e.stateId=:stateId AND e.cityId=:cityId")
-})
+@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class CityMst extends Base {
 
 	private static final long serialVersionUID = -1L;
 
-	@Column(nullable = false,length = 8)
+	@Column(nullable = false, length = 8)
 	private String countryId = "";
-	
-	@Column(nullable = false,length = 8)
+
+	@Column(nullable = false, length = 8)
 	private String stateId = "";
-	
-	@Column(nullable = false,length = 8)
+
+	@Column(nullable = false, length = 8)
 	private String cityId = "";
-	
-	@Column(nullable = false,length = 48)
-	private String cityName ="";
-	
-	@Column(nullable = false,length = 48)
-	private String cityDisplayName ="";
-	
+
+	@Column(nullable = false, length = 48)
+	private String cityName = "";
+
+	@Column(nullable = false, length = 48)
+	private String cityDisplayName = "";
+
 	@Column(nullable = true)
 	private Integer isActive = 1;
 
 	@Column(nullable = true, length = 8)
 	private String authStatus = "";
+
+	@Column(nullable = true, length = 8)
+	private Boolean isDeleted = true;
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
 	public String getCountryId() {
 		return countryId;
@@ -101,4 +104,24 @@ public class CityMst extends Base {
 	public void setAuthStatus(String authStatus) {
 		this.authStatus = authStatus;
 	}
+
+//	@Builder()
+//	public CityMst(String countryId, String stateId, String cityId, String cityName, String cityDisplayName,
+//			Integer isActive, String authStatus, Boolean isDeleted) {
+//		super();
+//		this.countryId = countryId;
+//		this.stateId = stateId;
+//		this.cityId = cityId;
+//		this.cityName = cityName;
+//		this.cityDisplayName = cityDisplayName;
+//		this.isActive = isActive;
+//		this.authStatus = authStatus;
+//		this.isDeleted = isDeleted;
+//	}
+//
+//	public CityMst() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
+
 }

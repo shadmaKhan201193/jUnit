@@ -1,6 +1,7 @@
 package com.itl.configuration;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,6 +16,8 @@ public class CacheBuilder {
 
 	@Autowired
 	private CacheManager cacheManager;
+	
+	public HashMap<String, String> localCache = new HashMap<>();
 
 	private Logger logger = LoggerFactory.getLogger(CacheBuilder.class);
 
@@ -66,8 +69,7 @@ public class CacheBuilder {
 								continue;
 							}
 							altKey.setAccessible(true);
-							cacheManager.getCache(cacheContainerName).put(altKey.get(cacheObj),
-									masterKey.get(cacheObj));
+							localCache.put(cacheContainerName+"::"+altKey.get(cacheObj), (String)masterKey.get(cacheObj));
 						}
 					}
 				} else {
@@ -77,10 +79,5 @@ public class CacheBuilder {
 				logger.warn("Failed to build cache for : {}, due to inaccessible field in object.", cacheContainerName);
 			}
 		}
-	}
-
-	public void initializeCache(String string, String appName) {
-		// TODO Auto-generated method stub
-		
 	}
 }

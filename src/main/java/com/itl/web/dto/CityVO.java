@@ -1,5 +1,8 @@
 package com.itl.web.dto;
 
+import lombok.Builder;
+
+
 public class CityVO {
 	private String countryId = "";
 	private String stateId = "";
@@ -11,6 +14,24 @@ public class CityVO {
 	private String authStatus ="";
 	
 	
+	
+	
+	public CityVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public CityVO(String countryId, String stateId, String cityId, String cityName, String cityDisplayName,
+			String isActive, String isDeleted, String authStatus) {
+		super();
+		this.countryId = countryId;
+		this.stateId = stateId;
+		this.cityId = cityId;
+		this.cityName = cityName;
+		this.cityDisplayName = cityDisplayName;
+		this.isActive = isActive;
+		this.isDeleted = isDeleted;
+		this.authStatus = authStatus;
+	}
 	public String getIsActive() {
 		return isActive;
 	}
@@ -59,6 +80,7 @@ public class CityVO {
 	public void setCityDisplayName(String cityDisplayName) {
 		this.cityDisplayName = cityDisplayName;
 	}
+	
 	
 	
 	

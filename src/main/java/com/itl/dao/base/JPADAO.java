@@ -29,5 +29,7 @@ public interface JPADAO<E, K> {
 	public void flush();
 	
 	public E findById(K id);
+
+	
 	
 }

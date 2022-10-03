@@ -1,0 +1,24 @@
+app: master-service
+
+replicaCount: 1
+containers:
+  name: maste-service 
+
+image:
+  repository: 172.21.0.66:5000/master-service:0.0.1
+  pullPolicy: IfNotPresent
+  
+service:
+  type: ClusterIP
+  targetport: 8183
+  port: 8183
+
+livenessProbe:
+  enabled: true
+  path: /api/health
+  scheme: HTTP
+  initialDelaySeconds: 120
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1

@@ -21,6 +21,13 @@ pipeline {
                 }
             }
         }
+        stage("jacoco-scan") {
+            steps {
+                script {
+                    jacoco()
+                }
+            }
+        }
         stage("Publish"){
             steps{
                 script {

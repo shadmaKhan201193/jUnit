@@ -157,12 +157,12 @@ public class CityController {
     public ResponseEntity<CityVOList>  getCityByAuthorizedStatus() { 
 		
 		logger.info("Fetch countries by AuthStatus : A");
-		List<CityMst> stateList = CityService.getByAuthStatus(OmniConstants.AUTH_AUTHORIZED,Boolean.FALSE);
+		List<CityMst> cityList = CityService.getByAuthStatus(OmniConstants.AUTH_AUTHORIZED,Boolean.FALSE);
 		CityVOList voList = new CityVOList();
 		List<CityVO> cityVOList = new ArrayList<CityVO>();  
 		
-		if (null != stateList) {		
-			for (CityMst cityMst: stateList) {				
+		if (null != cityList) {		
+			for (CityMst cityMst: cityList) {				
 				CityVO city = new CityVO();
 				city.setCityId(cityMst.getCityId());
 				city.setCityId(cityMst.getCityId());
@@ -176,9 +176,11 @@ public class CityController {
 				
 				cityVOList.add(city);
 			}
+			voList.setCity(cityVOList);
+			return new ResponseEntity<CityVOList>(voList, HttpStatus.OK);
 		}
-		voList.setCity(cityVOList);
-		return new ResponseEntity<CityVOList>(voList, HttpStatus.OK);
+	
+		return new ResponseEntity<CityVOList>(voList, HttpStatus.NOT_FOUND);
     }
 	
 	
@@ -213,12 +215,12 @@ public class CityController {
 	@GetMapping(value = "/list/rejected", produces = "application/json")
     public ResponseEntity<CityVOList> getCityByRejectedStatus() { 
 		logger.info("Fetch countries by AuthStatus : R");
-		List<CityMst> stateList = CityService.getByAuthStatus(OmniConstants.AUTH_REJECTED,Boolean.FALSE);
+		List<CityMst> cityList = CityService.getByAuthStatus(OmniConstants.AUTH_REJECTED,Boolean.FALSE);
 		CityVOList voList = new CityVOList();
 		List<CityVO> cityVOList = new ArrayList<CityVO>();  
 		
-		if (null != stateList) {
-			for (CityMst cityMst: stateList) {
+		if (null != cityList) {
+			for (CityMst cityMst: cityList) {
 				CityVO city = new CityVO();
 				city.setCityId(cityMst.getCityId());
 				city.setCityId(cityMst.getCityId());
@@ -240,14 +242,14 @@ public class CityController {
 	
 	
 	@GetMapping(value = "/list/deleted", produces = "application/json")
-    public CityVOList getCityByDeleted() { 
+    public ResponseEntity<CityVOList> getCityByDeleted() { 
 		logger.info("Fetch countries by AuthStatus : D");
-		List<CityMst> stateList = CityService.getByDeleted(Boolean.TRUE);
+		List<CityMst> cityList = CityService.getByDeleted(Boolean.TRUE);
 		CityVOList voList = new CityVOList();
 		List<CityVO> cityVOList = new ArrayList<CityVO>();  
 		
-		if (null != stateList) {		
-			for (CityMst cityMst: stateList) {
+		if (null != cityList) {		
+			for (CityMst cityMst: cityList) {
 				CityVO city = new CityVO();
 				city.setCityId(cityMst.getCityId());
 				city.setCityName(cityMst.getCityName());
@@ -260,9 +262,11 @@ public class CityController {
 				
 				cityVOList.add(city);
 			}
+			voList.setCity(cityVOList);
+			return new ResponseEntity<CityVOList>(voList, HttpStatus.OK); 
 		}
-		voList.setCity(cityVOList);
-        return voList;  
+	
+		return new ResponseEntity<CityVOList>(voList, HttpStatus.NOT_FOUND);  
     }
 	
 	

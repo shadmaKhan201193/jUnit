@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.3'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.example'
@@ -13,11 +14,12 @@ repositories {
 }
 
 dependencies {
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-   testImplementation 'com.h2database:h2'
+    testImplementation 'com.h2database:h2'
     testImplementation group: 'com.h2database', name: 'h2', version: '2.1.214'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'net.sf.dozer:dozer:5.5.1'
@@ -30,6 +32,27 @@ dependencies {
     
 }
 
-tasks.named('test') {
+//tasks.named('test') 
+test{
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport		
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacoco{
+ 
+     toolVersion = "0.8.5"
+    reportsDirectory = layout.buildDirectory.dir('jacocoTestReport')
+}
+
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoTestReport')
+    }
 }

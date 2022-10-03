@@ -1,4 +1,4 @@
-@Library('sharedlibrary') _
+@Library('sharedlibrary@jacocoTestReport') _
 pipeline {
     agent any
     tools {

@@ -32,8 +32,7 @@ public final class OmniConstants {
 	public static final String AUTH_REJECTED = "R";
 	public static final String AUTH_AUTHORIZED = "A";
 	public static final String AUTH_CLOSED = "C";
-	public static final String AUTH_DRAFT = "D";
-	public static final String AUTH_DISABLED = "D";
+	public static final String AUTH_DELETED = "D";
 	public static final String REVERSAL = "R";
 	
 	public static final String AUTH_PREV_PENDING = "Previous Pending";

@@ -24,7 +24,7 @@ pipeline {
         stage("jacoco-scan") {
             steps {
                 script {
-                    jacoco()
+                    jacoco(jacoco)
                 }
             }
         }

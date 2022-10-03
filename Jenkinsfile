@@ -21,11 +21,6 @@ pipeline {
                 }
             }
         }
-        stage("jacoco") {
-            steps {
-                jacoco()
-            }
-        }
         stage("Publish"){
             steps{
                 script {

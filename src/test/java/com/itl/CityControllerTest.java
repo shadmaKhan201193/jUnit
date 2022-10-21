@@ -1,10 +1,8 @@
 package com.itl;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -52,14 +49,10 @@ public class CityControllerTest {
 	CityMst citydata3 = new CityMst();
 	CityMst citydata4 = new CityMst();
 
-	// private String authStatus;
-
-//	private Boolean isDeleted;
-
 	@BeforeEach
 	public void setUp() {
 
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		this.mvc = MockMvcBuilders.standaloneSetup(cityController).build();
 
 		citydata.setCityId("RRRR");
@@ -82,7 +75,7 @@ public class CityControllerTest {
 		citydata3.setCountryId("Ind");
 		citydata3.setAuthStatus("R");
 		cityList.add(citydata3);
-		
+
 		citydata4.setCityId("BBB");
 		citydata4.setCityName("Banglor");
 		citydata4.setStateId("TT");
@@ -92,7 +85,7 @@ public class CityControllerTest {
 
 	}
 
-	 @Test
+	@Test
 	@Order(1)
 	public void createCitySuccess_whenCityIdNotNullAndCityIdNotDuplicate() throws Exception {
 
@@ -110,9 +103,7 @@ public class CityControllerTest {
 
 	}
 
-	// @Test// .andExpect(MockMvcResultMatchers.content().string("Successfully updated
-		// Record"));
-	 @Test
+	@Test
 	@Order(2)
 	public void updateCityRecordSuccess_MatchwithExistingCityId() throws Exception {
 
@@ -126,11 +117,10 @@ public class CityControllerTest {
 				.thenReturn(citydata);
 
 		mvc.perform(requestBuilder).andExpect(status().isOk());
-		
 
 	}
 
-	 @Test
+	@Test
 	public void updateCitythrowsError_whenCityIdNotMatchedwithExistingCityId() throws Exception {
 
 		String updatedcontent = obhwriter.writeValueAsString(citydata);// convert json data into string
@@ -146,7 +136,7 @@ public class CityControllerTest {
 
 	}
 
-	 @Test
+	@Test
 	public void GetCityDataByGetByCityId_whenCityIdMatchwithExistingCityId() throws Exception {
 		Mockito.when(CityService.getByCityId("PPP")).thenReturn(Helper());
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/City/id/PPP")
@@ -155,7 +145,7 @@ public class CityControllerTest {
 
 	}
 
-	 @Test
+	@Test
 	public void GetByCityId_whenCityIdisMatchwithExistingCityId() throws Exception {
 		Mockito.when(CityService.getByCityId("MMM")).thenReturn(citydata3);
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/City/id/MMM")
@@ -164,7 +154,7 @@ public class CityControllerTest {
 
 	}
 
-	 @Test
+	@Test
 	public void GetCityData_whenAuthStatusAuthorized() throws Exception {
 		Mockito.when(CityService.getByAuthStatus(OmniConstants.AUTH_AUTHORIZED, Boolean.FALSE))
 				.thenReturn(authStatusHelper(OmniConstants.AUTH_AUTHORIZED));
@@ -173,7 +163,7 @@ public class CityControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk());
 	}
 
-	 @Test
+	@Test
 	public void GetpendingCityData_whenAuthStatusAuthorized() throws Exception {
 		Mockito.when(CityService.getByAuthStatus(OmniConstants.AUTH_PENDING, Boolean.FALSE))
 				.thenReturn(authStatusHelper(OmniConstants.AUTH_PENDING));
@@ -182,7 +172,7 @@ public class CityControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk());
 	}
 
-	 @Test
+	@Test
 	public void GetRejectedgCityData_whenAuthStatusAuthorized() throws Exception {
 		Mockito.when(CityService.getByAuthStatus(OmniConstants.AUTH_REJECTED, Boolean.FALSE))
 				.thenReturn(authStatusHelper(OmniConstants.AUTH_REJECTED));
@@ -192,13 +182,13 @@ public class CityControllerTest {
 	}
 
 	@Test
-	public void GetDeletedCityData() throws Exception {		
-		 Mockito.when(CityService.getByDeleted(Boolean.TRUE)).thenReturn(authStatusHelper(OmniConstants.AUTH_DELETED));
+	public void GetDeletedCityData() throws Exception {
+		Mockito.when(CityService.getByDeleted(Boolean.TRUE)).thenReturn(authStatusHelper(OmniConstants.AUTH_DELETED));
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/City/list/deleted")
 				.accept(MediaType.APPLICATION_JSON);
 		mvc.perform(requestBuilder).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	@Order(6)
 	public void DeleteCityById_whenCityIdisMatchwithExistingCityId() throws Exception {
@@ -227,7 +217,6 @@ public class CityControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isNotFound());
 
 	}
-	
 
 	public CityMst Helper() {
 		for (CityMst s : cityList) {

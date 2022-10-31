@@ -26,9 +26,6 @@ public class CityDaoImplTest {
 
 	ObjectMapper objmapper = new ObjectMapper();
 	ObjectWriter obhwriter = objmapper.writer();
-	private CityMst cityMst;
-
-	
 	
 	@BeforeEach
 	public void setUp() {

@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.persistence.EntityManager;
 
-
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
@@ -37,7 +36,6 @@ private static final Logger logger = LoggerFactory.getLogger(CityServiceImpl.cla
 	@Autowired
 	private CacheBuilder cacheBuilder;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostConstruct
 	public void init() throws Exception {
 		//super.setDAO((JPADAO) cityDAO);

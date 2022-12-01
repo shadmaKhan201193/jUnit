@@ -50,14 +50,14 @@ pipeline {
                     deploy()
                 }
             }
-        }*/
+        }
         stage("namespaces") {
             steps {
                 script {
                     helm()
                 }
             }
-        } 
+        } */
     }
 }
 

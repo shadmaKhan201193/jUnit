@@ -18,7 +18,7 @@ public interface CityService extends NGService {
 
 	public List<CityMst> getByDeleted(Boolean isDeleted) throws NGException;
 	
-	public List<CityMst> updateCacheList(String authStatus) throws NGException;
+	public void updateCacheList(String authStatus) throws NGException;
 	
 	public String getCityIdByCityName(String cityname)throws NGException;
 }

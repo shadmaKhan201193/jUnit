@@ -151,11 +151,11 @@ private static final Logger logger = LoggerFactory.getLogger(CityServiceImpl.cla
 	}
 	
     @CachePut(value = "cityLists", key = "#authStatus")
-	public List<CityMst> updateCacheList(String authStatus) throws NGException {
+	public void updateCacheList(String authStatus) throws NGException {
 		logger.debug("Manually updating list of countries with authStatus : {}", authStatus);
 		List<CityMst> city = getByAuthStatus(authStatus, Boolean.FALSE);
 
-		return (null!=city && city.size()>0)?city:null;
+		//return (null!=city && city.size()>0)?city:null;
 	}
     
 	@Override

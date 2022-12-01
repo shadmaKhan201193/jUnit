@@ -33,37 +33,41 @@ public class CityController {
 	@PostMapping(value = "/createCity", consumes = "application/json", produces = "application/json")
 	public String createcity(@RequestBody CityVO city) {
 		logger.debug("Add city for cityId : {}" + city.getCityId());
-		CityMst cityMst = CityService.getByCityId(city.getCityId());
-		if (null != cityMst) {
-			logger.info("city with cityId {} already exists.", city.getCityId());
-			return "Failure.. Record already exists";
-		} else {
-			cityMst = new CityMst();
-			Date dt = new Date();
-			cityMst.setCreatedBy("login");
-			cityMst.setCreatedDate(dt);
-			cityMst.setCreatedTime(dt);
-			cityMst.setLastModifiedBy("login");
-			cityMst.setLastModifiedDate(dt);
-			cityMst.setLastModifiedTime(dt);
-			cityMst.setAuthStatus(OmniConstants.AUTH_PENDING);
-			cityMst.setIsActive(1);
-			cityMst.setIsDeleted(Boolean.FALSE);
-			cityMst.setCityId(city.getCityId());
-			cityMst.setCityName(city.getCityName());
-			cityMst.setStateId(city.getStateId());
-			cityMst.setCountryId(city.getCountryId());
-			cityMst.setCityDisplayName(city.getCityDisplayName());
-
-			CityMst cityMstNew = CityService.saveOrUpdate("login", cityMst);
-			if (null != cityMstNew) {
-				CityService.updateCacheList(OmniConstants.AUTH_AUTHORIZED);
-				logger.info("city & Cache - {} - saved Successfully", city.getCityId());
-				return "Successfully saved record";
+		try {
+			CityMst cityMst = CityService.getByCityId(city.getCityId());
+			if (null != cityMst) {
+				logger.info("city with cityId {} already exists.", city.getCityId());
+				return "Failure.. Record already exists";
 			} else {
-				logger.info("Failed to save city - {}", city.getCityId());
-				return "Failure while saving record";
+				cityMst = new CityMst();
+				Date dt = new Date();
+				cityMst.setCreatedBy("login");
+				cityMst.setCreatedDate(dt);
+				cityMst.setCreatedTime(dt);
+				cityMst.setLastModifiedBy("login");
+				cityMst.setLastModifiedDate(dt);
+				cityMst.setLastModifiedTime(dt);
+				cityMst.setAuthStatus(OmniConstants.AUTH_PENDING);
+				cityMst.setIsActive(1);
+				cityMst.setIsDeleted(Boolean.FALSE);
+				cityMst.setCityId(city.getCityId());
+				cityMst.setCityName(city.getCityName());
+				cityMst.setStateId(city.getStateId());
+				cityMst.setCountryId(city.getCountryId());
+				cityMst.setCityDisplayName(city.getCityDisplayName());
+	
+				CityMst cityMstNew = CityService.saveOrUpdate("login", cityMst);
+				if (null != cityMstNew) {
+					CityService.updateCacheList(OmniConstants.AUTH_AUTHORIZED);
+					logger.info("city & Cache - {} - saved Successfully", city.getCityId());
+					return "Successfully saved record";
+				} else {
+					logger.info("Failed to save city - {}", city.getCityId());
+					return "Failure while saving record";
+				}
 			}
+		} catch (Exception e) {
+			return "Failure while saving record";
 		}
 	}
 	

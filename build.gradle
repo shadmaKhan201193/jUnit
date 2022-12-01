@@ -29,6 +29,8 @@ dependencies {
 	implementation 'net.sf.dozer:dozer:5.5.1'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '1.1.0'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.14'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    
     
 }
 
@@ -44,7 +46,7 @@ jacocoTestReport {
 
 jacoco{
  
-     toolVersion = "0.8.5"
+     toolVersion = "0.8.7"
     //reportsDirectory = layout.buildDirectory.dir('jacocoTestReport')
 }
 

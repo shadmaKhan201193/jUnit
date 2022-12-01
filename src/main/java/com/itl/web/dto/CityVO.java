@@ -1,9 +1,6 @@
 package com.itl.web.dto;
 
-import lombok.Builder;
-
-
-public class CityVO {
+public class CityVO extends BaseVO {
 	private String countryId = "";
 	private String stateId = "";
 	private String cityId = "";
